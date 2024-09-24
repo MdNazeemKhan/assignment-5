@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.html">
+</head>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+  }
+  .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+      text-align: center;
+      color: #333;
+  }
+  .history div {
+      padding: 10px;
+      background-color: #e9ecef;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+  }
+</style>
+
+    <body class="bg-teal-50">
+        <header class="bg-teal-50">
+      
+                    <!--  Nav Section Start -->
+      
+         <nav  class="navbar bg-base-100 w-4/5 mx-auto pt-8 bg-teal-50 flex lg:flex-row flex-col">
+            <div class="navbar-start">
+             <div class="justify-center mx-auto">
+              <a href="js/blog.html"><button class="btn  bg-teal-600 text-white text-xl">Blog</button></a>
+             </div>
+            </div>
+            <div class="navbar-center">
+              <img class="mr-4" src="assets/logo.png" alt="">
+              <a class="text-3xl font-bold"> Donate Bangladesh</a>
+            </div>
+            <div class="navbar-end justify-center">
+            <div> <img class="mr-2 lg:mt-0" src="assets/coin.png" alt=""></div>
+              <div>
+                <p class="font-bold text-2xl font-mono"> <span id="user-balance">5500</span> BDT</p>
+              </div>
+            </div>
+          
+         </nav>
+      
+      
+                        <!--  Nav Section End -->
+      
+      
+                        <!-- Hero Section Start Here -->
+      
+      
+      
+          <section class="mt-10">
+            <div>
+              <div class="bg-base-100 mx-auto bg-stone-100 ">
+                <div class="card-body items-center text-center">
+                  <div class="card-actions justify-end gap-10">
+                    <a href="index.html">
+                        <button class="btn  bg-teal-600 text-white text-xl" >Donation</button>
+                      </a>
+                    <button class="btn bg-slate-200 text-xl" onclick="toggleHistory()">History</button>
+                  </div>
+                  <hr class="w-full h-4 mt-4">
+                </div>
+              </div>
+            </div>
+           </section>
+          </header>
+          <main>
+           
+
+            <div class="container">
+              
+              <div id="history-container" class="history">
+                  <!-- Donation history here -->
+              </div>
+          </div>
+      
+         
+
+
+
+          </main>
+
+
+          <script>
+            function loadDonationHistory() {
+                const historyContainer = document.getElementById('history-container');
+                const donationHistory = JSON.parse(localStorage.getItem('donationHistory')) || [];
+                
+                if (donationHistory.length === 0) {
+                    historyContainer.innerHTML = "<p>No donation history available.</p>";
+                } else {
+                    donationHistory.forEach(donation => {
+                        const entry = document.createElement('div');
+                        entry.innerText = `${donation.amount} Taka is Donated for Flood at Noakhali, Bangladesh      ${donation.date}`;
+                        historyContainer.appendChild(entry);
+                    });
+                }
+            }
+    
+            window.onload = loadDonationHistory;
+        </script>
+</body>
+</html>
